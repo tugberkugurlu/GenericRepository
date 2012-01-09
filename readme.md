@@ -1,0 +1,1 @@
+Generic Repository insrastructure for .NET applications.
