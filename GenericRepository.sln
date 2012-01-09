@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 11
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GenericRepository", "src\GenericRepository\GenericRepository.csproj", "{E84FD26D-1670-4EB7-97AC-5501E0ED85FD}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GenericRepository.EF", "src\GenericRepository.DbContext\GenericRepository.EF.csproj", "{AB6314C3-E283-47A8-9C5D-B5CBF2E21006}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GenericRepository.EF", "src\GenericRepository.EF\GenericRepository.EF.csproj", "{AB6314C3-E283-47A8-9C5D-B5CBF2E21006}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
