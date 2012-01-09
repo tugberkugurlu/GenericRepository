@@ -22,3 +22,6 @@ TestResult.xml
 desktop.ini
 *.publish.xml
 *.refactorlog
+
+info
+nugetPacks
