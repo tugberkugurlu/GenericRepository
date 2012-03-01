@@ -8,6 +8,7 @@ namespace GenericRepository {
 
     public interface IRepository<T> : IDisposable where T : class {
 
+        void Upsert(T entity, Func<T, bool> insertExpression);
         IQueryable<T> AllIncluding(params Expression<Func<T, object>>[] includeProperties);
         IQueryable<T> All { get; }
         T Find(params object[] keyValues);

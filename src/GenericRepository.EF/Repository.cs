@@ -16,7 +16,7 @@ namespace GenericRepository.EF {
             set { _entities = value; }
         }
 
-        public IQueryable<T> All
+        public virtual IQueryable<T> All
         {
             get
             {
@@ -24,7 +24,7 @@ namespace GenericRepository.EF {
             }
         }
 
-        public IQueryable<T> AllIncluding(params Expression<Func<T, object>>[] includeProperties)
+        public virtual IQueryable<T> AllIncluding(params Expression<Func<T, object>>[] includeProperties)
         {
             IQueryable<T> query = _entities.Set<T>();
             foreach (var includeProperty in includeProperties)
@@ -40,12 +40,12 @@ namespace GenericRepository.EF {
             return query;
         }
 
-        public T Find(params object[] keyValues)
+        public virtual T Find(params object[] keyValues)
         {
             return _entities.Set<T>().Find(keyValues);
         }
 
-        public IQueryable<T> FindBy(System.Linq.Expressions.Expression<Func<T, bool>> predicate) {
+        public virtual IQueryable<T> FindBy(System.Linq.Expressions.Expression<Func<T, bool>> predicate) {
 
             IQueryable<T> query = _entities.Set<T>().Where(predicate);
             return query;
@@ -64,6 +64,18 @@ namespace GenericRepository.EF {
         public virtual void Edit(T entity) {
 
             _entities.Entry(entity).State = System.Data.EntityState.Modified;
+        }
+
+        public virtual void Upsert(T entity, Func<T, bool> insertExpression)
+        {
+            if (insertExpression.Invoke(entity))
+            {
+                Add(entity);
+            }
+            else
+            {
+                Edit(entity);
+            }
         }
 
         public virtual void Save() {
