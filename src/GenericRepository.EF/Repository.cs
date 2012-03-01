@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Data.Entity;
+using System.Linq.Expressions;
 
 namespace GenericRepository.EF {
 
@@ -15,10 +16,33 @@ namespace GenericRepository.EF {
             set { _entities = value; }
         }
 
+        public IQueryable<T> All
+        {
+            get
+            {
+                return GetAll();
+            }
+        }
+
+        public IQueryable<T> AllIncluding(params Expression<Func<T, object>>[] includeProperties)
+        {
+            IQueryable<T> query = _entities.Set<T>();
+            foreach (var includeProperty in includeProperties)
+            {
+                query = query.Include(includeProperty);
+            }
+            return query;
+        }
+
         public virtual IQueryable<T> GetAll() {
 
             IQueryable<T> query = _entities.Set<T>();
             return query;
+        }
+
+        public T Find(params object[] keyValues)
+        {
+            return _entities.Set<T>().Find(keyValues);
         }
 
         public IQueryable<T> FindBy(System.Linq.Expressions.Expression<Func<T, bool>> predicate) {
