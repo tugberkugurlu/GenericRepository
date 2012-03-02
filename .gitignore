@@ -26,4 +26,4 @@ desktop.ini
 info
 nugetPacks
 packages
-.nuget
+NuGet.config
