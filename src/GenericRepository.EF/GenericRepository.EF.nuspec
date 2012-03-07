@@ -11,5 +11,8 @@
     <description>$description$</description>
     <copyright>Copyright 2012</copyright>
     <tags>EF CodeFirst DbContext Repository GenericRepository</tags>
+    <dependencies>
+      <dependency id="GenericRepository" version="2.1.0" />
+    </dependencies>
   </metadata>
 </package>
