@@ -50,6 +50,7 @@
     <Compile Include="Repository.cs" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="GenericRepository.EF.nuspec" />
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
