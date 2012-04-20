@@ -16,21 +16,21 @@ namespace GenericRepository.EF {
             set { _entities = value; }
         }
 
-        public virtual IQueryable<T> All
-        {
-            get
-            {
+        public virtual IQueryable<T> All {
+
+            get {
                 return GetAll();
             }
         }
 
-        public virtual IQueryable<T> AllIncluding(params Expression<Func<T, object>>[] includeProperties)
-        {
+        public virtual IQueryable<T> AllIncluding(params Expression<Func<T, object>>[] includeProperties) {
+
             IQueryable<T> query = _entities.Set<T>();
-            foreach (var includeProperty in includeProperties)
-            {
+            foreach (var includeProperty in includeProperties) {
+
                 query = query.Include(includeProperty);
             }
+
             return query;
         }
 
@@ -40,15 +40,29 @@ namespace GenericRepository.EF {
             return query;
         }
 
-        public virtual T Find(params object[] keyValues)
-        {
+        public virtual T Find(params object[] keyValues) {
+
             return _entities.Set<T>().Find(keyValues);
         }
 
         public virtual IQueryable<T> FindBy(System.Linq.Expressions.Expression<Func<T, bool>> predicate) {
-
+            
             IQueryable<T> query = _entities.Set<T>().Where(predicate);
             return query;
+        }
+
+        public virtual PaginatedList<T> Paginate(int pageIndex, int pageSize) {
+
+            return Paginate(null, pageIndex, pageSize);
+        }
+
+        public virtual PaginatedList<T> Paginate(System.Linq.Expressions.Expression<Func<T, bool>> predicate, int pageIndex, int pageSize) {
+
+            IQueryable<T> query = (predicate == null) ? 
+                _entities.Set<T>().AsQueryable() : 
+                _entities.Set<T>().Where(predicate).AsQueryable();
+
+            return new PaginatedList<T>(query, pageIndex, pageSize);
         }
 
         public virtual void Add(T entity) {
@@ -66,16 +80,12 @@ namespace GenericRepository.EF {
             _entities.Entry(entity).State = System.Data.EntityState.Modified;
         }
 
-        public virtual void Upsert(T entity, Func<T, bool> insertExpression)
-        {
-            if (insertExpression.Invoke(entity))
-            {
+        public virtual void Upsert(T entity, Func<T, bool> insertExpression) {
+
+            if (insertExpression.Invoke(entity)) 
                 Add(entity);
-            }
             else
-            {
                 Edit(entity);
-            }
         }
 
         public virtual void Save() {
