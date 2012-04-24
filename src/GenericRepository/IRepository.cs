@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data.Entity;
 using System.Linq;
 using System.Linq.Expressions;
 using System.Text;
@@ -7,7 +8,6 @@ using System.Text;
 namespace GenericRepository {
 
     public interface IRepository<T> : IDisposable where T : class {
-
         void Upsert(T entity, Func<T, bool> insertExpression);
         IQueryable<T> AllIncluding(params Expression<Func<T, object>>[] includeProperties);
         IQueryable<T> All { get; }
