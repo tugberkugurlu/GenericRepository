@@ -10,7 +10,7 @@ namespace GenericRepository.EF {
     public abstract class Repository<C, T> : IRepository<T> where T : class where C : DbContext, new() {
 
         private C _entities = new C();
-        protected C Context {
+        public C Context {
 
             get { return _entities; }
             set { _entities = value; }
