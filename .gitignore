@@ -5,6 +5,7 @@ obj
 sql
 *.user
 *.suo
+*.ncrunchsolution
 _ReSharper*
 dist
 output
