@@ -10,7 +10,7 @@ namespace GenericRepository.EF {
     public abstract class Repository<C, T> : IRepository<T> where T : class where C : DbContext, new() {
 
         private C _entities = new C();
-        public C Context {
+        protected C Context {
 
             get { return _entities; }
             set { _entities = value; }
@@ -58,7 +58,7 @@ namespace GenericRepository.EF {
 
         public virtual void Delete(T entity) {
 
-            _entities.Set<T>().Remove(entity);
+            _entities.Entry(entity).State = System.Data.EntityState.Deleted;
         }
 
         public virtual void Edit(T entity) {
