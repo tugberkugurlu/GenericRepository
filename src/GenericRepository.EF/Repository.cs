@@ -58,7 +58,19 @@ namespace GenericRepository.EF {
 
         public virtual void Delete(T entity) {
 
-            _entities.Set<T>().Remove(entity);
+            var dbEntityEntry = _entities.Entry(entity);
+            if (dbEntityEntry.State != System.Data.EntityState.Deleted)
+            {
+
+                dbEntityEntry.State = System.Data.EntityState.Deleted;
+            }
+            else
+            {
+
+                var dbSet = _entities.Set<T>();
+                dbSet.Attach(entity);
+                dbSet.Remove(entity);
+            }
         }
 
         public virtual void Edit(T entity) {
