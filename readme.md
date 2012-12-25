@@ -1,4 +1,4 @@
-This little project contains a Generic Repository insrastructure for .NET applications and also a DbContext Implementation of that.
+This little project contains a Generic Repository implementation for several data access platforms such as Entity Framework.
 
 You can find more information about the main idea of this pattern and the usage on ASP.NET MVC along with Unit Testing by visiting the below links:
 
