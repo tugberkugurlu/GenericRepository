@@ -130,7 +130,7 @@ namespace GenericRepository.EntityFramework {
             return paginatedList;
         }
 
-        private DbEntityEntry GetDbEntityEntrySafely<TEntity>(TEntity entity) where TEntity : class, IEntity<TId> {
+        private DbEntityEntry GetDbEntityEntrySafely(TEntity entity) {
 
             DbEntityEntry dbEntityEntry = _dbContext.Entry<TEntity>(entity);
             if (dbEntityEntry.State == EntityState.Detached) {

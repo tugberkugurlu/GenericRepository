@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003"
+         ToolsVersion="4.0"
+         DefaultTargets="Default">
+
+  <PropertyGroup>
+    <Configuration Condition="'$(Configuration)' == ''">Debug</Configuration>
+    <SolutionDir Condition="'$(SolutionDir)' == ''">$([System.IO.Path]::GetDirectoryName($(MSBuildProjectDirectory)))</SolutionDir>
+    <ScriptsDir>$(SolutionDir)\scripts</ScriptsDir>
+    <NugetExeDir>$(SolutionDir)\.nuget</NugetExeDir>
+    <Solutionfile>$(SolutionDir)\GenericRepository.sln</Solutionfile>
+    <BuildArtifactsDir>$(SolutionDir)\artifacts</BuildArtifactsDir>
+    <NuGetPackageOutputDir>$(BuildArtifactsDir)\packages</NuGetPackageOutputDir>
+    <MSBuildCommunityTasksLib>$(ScriptsDir)\MSBuild.Community.Tasks.dll</MSBuildCommunityTasksLib>
+    <VersionInfoFile>$(SolutionDir)\src\Common\CommonAssemblyInfo.cs</VersionInfoFile>
+  </PropertyGroup>
+
+  <UsingTask AssemblyFile="$(MSBuildCommunityTasksLib)" TaskName="MSBuild.Community.Tasks.RegexMatch" />
+  
+  <ItemGroup>
+    <AppProjFiles Include="$(SolutionDir)\src\**\*.csproj" />
+    <TestProjFiles Include="$(SolutionDir)\tests\**\*.csproj" />
+  </ItemGroup>
+
+  <Target Name="Default" DependsOnTargets="Compile; Package" />
+  <Target Name="DefaultCI" DependsOnTargets="Default; PublishPackage" />
+
+  <Target Name="Clean">
+    <RemoveDir Directories="$(BuildArtifactsDir)" />
+  </Target>
+  <Target Name="Init" DependsOnTargets="Clean">
+    <MakeDir Directories="$(BuildArtifactsDir);$(NuGetPackageOutputDir)" />
+  </Target>
+  <Target Name="Compile" DependsOnTargets="Init">
+    <MSBuild Projects="@(AppProjFiles)" Targets="Rebuild" Properties="OutDir=$(BuildArtifactsDir);Configuration=$(Configuration)" />
+  </Target>
+  <Target Name="Package">
+    <Exec Command="$(NugetExeDir)\nuget.exe pack %(AppProjFiles.FullPath) -Build -OutputDirectory $(NuGetPackageOutputDir)" />
+  </Target>
+  <Target Name="PublishPackage">
+    <Exec Command="powershell -file $(ScriptsDir)\publish.ps1" />
+  </Target>
+  
+</Project>

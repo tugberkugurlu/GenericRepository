@@ -12,6 +12,11 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".nuget", ".nuget", "{1723F5
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GenericRepository.EntityFramework", "src\GenericRepository.EntityFramework\GenericRepository.EntityFramework.csproj", "{06C14AB3-FE2A-4119-89DF-70E7C410A8FF}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".build", ".build", "{0FA9D119-36B3-4EA6-B4AA-289B5D0AE591}"
+	ProjectSection(SolutionItems) = preProject
+		scripts\GenericRepository.msbuild = scripts\GenericRepository.msbuild
+	EndProjectSection
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU

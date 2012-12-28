@@ -13,7 +13,7 @@
     <copyright>Copyright 2012 Tugberk Ugurlu</copyright>
     <tags>EntityFramework CodeFirst DbContext Repository GenericRepository</tags>
     <dependencies>
-      <dependency id="GenericRepository" version="0.3.0" />
+      <dependency id="GenericRepository" version="$version$" />
     </dependencies>
   </metadata>
 </package>
