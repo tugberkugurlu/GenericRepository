@@ -1,0 +1,19 @@
+<?xml version="1.0"?>
+<package >
+  <metadata>
+    <id>GenericRepository.EF</id>
+    <version>0.3.0-pre01</version>
+    <title>GenericRepository.EF</title>
+    <authors>Tugberk Ugurlu</authors>
+    <owners>Tugberk Ugurlu</owners>
+    <licenseUrl>https://raw.github.com/tugberkugurlu/GenericRepository/master/license.txt</licenseUrl>
+    <projectUrl>https://github.com/tugberkugurlu/GenericRepository</projectUrl>
+    <requireLicenseAcceptance>false</requireLicenseAcceptance>
+    <description>Generic Repository Entity Framework DbContext implementation.</description>
+    <copyright>Copyright 2012 Tugberk Ugurlu</copyright>
+    <tags>EntityFramework CodeFirst DbContext Repository GenericRepository</tags>
+    <dependencies>
+      <dependency id="GenericRepository.EntityFramework" version="0.3.0-pre01" />
+    </dependencies>
+  </metadata>
+</package>

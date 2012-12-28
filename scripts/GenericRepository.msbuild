@@ -20,6 +20,7 @@
   <ItemGroup>
     <AppProjFiles Include="$(SolutionDir)\src\**\*.csproj" />
     <TestProjFiles Include="$(SolutionDir)\tests\**\*.csproj" />
+    <NuGetPackageManifests Include="$(SolutionDir)\src\NuGetPackageManifests\*.nuspec" />
   </ItemGroup>
 
   <Target Name="Default" DependsOnTargets="Compile; Package" />
@@ -35,7 +36,8 @@
     <MSBuild Projects="@(AppProjFiles)" Targets="Rebuild" Properties="OutDir=$(BuildArtifactsDir);Configuration=$(Configuration)" />
   </Target>
   <Target Name="Package">
-    <Exec Command="$(NugetExeDir)\nuget.exe pack %(AppProjFiles.FullPath) -Build -OutputDirectory $(NuGetPackageOutputDir)" />
+    <Exec Command="$(NugetExeDir)\nuget.exe pack %(AppProjFiles.FullPath) -Build -OutputDirectory $(NuGetPackageOutputDir) -NonInteractive -Verbosity detailed" />
+    <Exec Command="$(NugetExeDir)\nuget.exe pack %(NuGetPackageManifests.FullPath) -OutputDirectory $(NuGetPackageOutputDir) -NonInteractive -Verbosity detailed" />
   </Target>
   <Target Name="PublishPackage">
     <Exec Command="powershell -file $(ScriptsDir)\publish.ps1" />
