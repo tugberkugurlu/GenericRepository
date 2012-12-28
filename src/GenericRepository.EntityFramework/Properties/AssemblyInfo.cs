@@ -6,7 +6,7 @@ using System.Runtime.InteropServices;
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
 [assembly: AssemblyTitle("GenericRepository.EntityFramework")]
-[assembly: AssemblyDescription("")]
+[assembly: AssemblyDescription("Generic Repository Entity Framework DbContext implementation")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("")]
 [assembly: AssemblyProduct("GenericRepository.EntityFramework")]

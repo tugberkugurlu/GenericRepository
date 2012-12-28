@@ -10,7 +10,10 @@
     <licenseUrl>https://raw.github.com/tugberkugurlu/GenericRepository/master/license.txt</licenseUrl>
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
     <description>$description$</description>
-    <copyright>Copyright 2012</copyright>
-    <tags>Repository GenericRepository</tags>
+    <copyright>Copyright 2012 Tugberk Ugurlu</copyright>
+    <tags>EntityFramework CodeFirst DbContext Repository GenericRepository</tags>
+    <dependencies>
+      <dependency id="GenericRepository" version="0.3.0" />
+    </dependencies>
   </metadata>
 </package>
