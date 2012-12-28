@@ -9,7 +9,8 @@ namespace GenericRepository.EntityFramework {
     public class EntityRepository<TEntity> : EntityRepository<TEntity, int> 
         where TEntity : class, IEntity<int> {
 
-        public EntityRepository(DbContext dbContext) : base(dbContext) { 
+        public EntityRepository(IEntitiesContext dbContext)
+            : base(dbContext) { 
 
         }
     }

@@ -14,10 +14,10 @@ namespace GenericRepository.EntityFramework {
     /// <typeparam name="TId">Type of entity Id</typeparam>
     public class EntityRepository<TEntity, TId> : IEntityRepository<TEntity, TId> 
         where TEntity : class, IEntity<TId> {
-        
-        private readonly DbContext _dbContext;
 
-        public EntityRepository(DbContext dbContext) {
+        private readonly IEntitiesContext _dbContext;
+
+        public EntityRepository(IEntitiesContext dbContext) {
 
             if (dbContext == null) {
 
