@@ -89,8 +89,7 @@ namespace GenericRepository.EntityFramework {
 
         public void Add(TEntity entity) {
 
-            DbEntityEntry dbEntityEntry = GetDbEntityEntrySafely(entity);
-            dbEntityEntry.State = EntityState.Added;
+            _dbContext.SetAsAdded(entity);
         }
 
         public void AddGraph(TEntity entity) {
@@ -100,14 +99,12 @@ namespace GenericRepository.EntityFramework {
 
         public void Edit(TEntity entity) {
 
-            DbEntityEntry dbEntityEntry = GetDbEntityEntrySafely(entity);
-            dbEntityEntry.State = EntityState.Modified;
+            _dbContext.SetAsModified(entity);
         }
 
         public void Delete(TEntity entity) {
 
-            DbEntityEntry dbEntityEntry = GetDbEntityEntrySafely(entity);
-            dbEntityEntry.State = EntityState.Deleted;
+            _dbContext.SetAsDeleted(entity);
         }
 
         public int Save() {
@@ -128,17 +125,6 @@ namespace GenericRepository.EntityFramework {
             PaginatedList<TEntity> paginatedList = queryable.ToPaginatedList(pageIndex, pageSize);
 
             return paginatedList;
-        }
-
-        private DbEntityEntry GetDbEntityEntrySafely(TEntity entity) {
-
-            DbEntityEntry dbEntityEntry = _dbContext.Entry<TEntity>(entity);
-            if (dbEntityEntry.State == EntityState.Detached) {
-
-                _dbContext.Set<TEntity>().Attach(entity);
-            }
-
-            return dbEntityEntry;
         }
 
         private enum OrderByType {

@@ -21,6 +21,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tests", "Tests", "{2B2D98B0
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GenericRepository.EntityFramework.Test", "tests\GenericRepository.EntityFramework.Test\GenericRepository.EntityFramework.Test.csproj", "{22B26FE9-10AC-48D5-B0A5-89FC7CCEF046}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GenericRepository.Test", "tests\GenericRepository.Test\GenericRepository.Test.csproj", "{D3822597-788D-4B72-9CC4-B8BCE4D36F61}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -39,11 +41,16 @@ Global
 		{22B26FE9-10AC-48D5-B0A5-89FC7CCEF046}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{22B26FE9-10AC-48D5-B0A5-89FC7CCEF046}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{22B26FE9-10AC-48D5-B0A5-89FC7CCEF046}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D3822597-788D-4B72-9CC4-B8BCE4D36F61}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D3822597-788D-4B72-9CC4-B8BCE4D36F61}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D3822597-788D-4B72-9CC4-B8BCE4D36F61}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D3822597-788D-4B72-9CC4-B8BCE4D36F61}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
 		{22B26FE9-10AC-48D5-B0A5-89FC7CCEF046} = {2B2D98B0-15AE-4EE2-91EE-E961D28B958F}
+		{D3822597-788D-4B72-9CC4-B8BCE4D36F61} = {2B2D98B0-15AE-4EE2-91EE-E961D28B958F}
 	EndGlobalSection
 EndGlobal

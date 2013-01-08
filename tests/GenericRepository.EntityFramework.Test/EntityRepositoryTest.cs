@@ -10,7 +10,7 @@ namespace GenericRepository.EntityFramework.Test {
     public class EntityRepositoryTest {
 
         [Fact]
-        public void GetAll_Should_Get_Expected_Amount_Of_Entities() {
+        public void GetAll_Should_Call_Set_Once_And_Get_Expected_Amount_Of_Entities() {
 
             // Arrange
             var people = GetDummyPeople(2);
@@ -27,7 +27,7 @@ namespace GenericRepository.EntityFramework.Test {
         }
 
         [Fact]
-        public void GetSingle_Should_Get_Expected_Entity() {
+        public void GetSingle_Should_Call_Set_Once_And_Get_Expected_Entity() {
 
             // Arrange
             var targetPersonId = 2;
@@ -42,11 +42,12 @@ namespace GenericRepository.EntityFramework.Test {
             Person person = entityRepository.GetSingle(targetPersonId);
 
             // Assert
+            peopleContextMock.Verify(pc => pc.Set<Person>(), Times.Once());
             Assert.Same(expectedPeson, person);
         }
 
         [Fact]
-        public void GetSingle_Should_Return_Null() {
+        public void GetSingle_Should_Call_Set_Once_And_Return_Null() {
 
             // Arrange
             var targetPersonId = 4;
@@ -60,6 +61,7 @@ namespace GenericRepository.EntityFramework.Test {
             Person person = entityRepository.GetSingle(targetPersonId);
 
             // Assert
+            peopleContextMock.Verify(pc => pc.Set<Person>(), Times.Once());
             Assert.Null(person);
         }
 
