@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Data;
 using System.Data.Entity;
 using System.Data.Entity.Infrastructure;
@@ -13,7 +14,8 @@ namespace GenericRepository.EntityFramework {
     /// <typeparam name="TEntity">Type of entity</typeparam>
     /// <typeparam name="TId">Type of entity Id</typeparam>
     public class EntityRepository<TEntity, TId> : IEntityRepository<TEntity, TId> 
-        where TEntity : class, IEntity<TId> {
+        where TEntity : class, IEntity<TId>
+        where TId : IComparable {
 
         private readonly IEntitiesContext _dbContext;
 
@@ -82,8 +84,8 @@ namespace GenericRepository.EntityFramework {
         }
 
         public TEntity GetSingle(TId id) {
-            
-            TEntity entity = GetAll().FirstOrDefault(x => x.Id.Equals(id));
+
+            TEntity entity = GetAll().FirstOrDefault(x => (object)x.Id == (object)id);
             return entity;
         }
 

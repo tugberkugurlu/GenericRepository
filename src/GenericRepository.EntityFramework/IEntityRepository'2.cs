@@ -10,7 +10,8 @@ namespace GenericRepository.EntityFramework {
     /// <typeparam name="TEntity">Type of entity</typeparam>
     /// <typeparam name="TId">Type of entity Id</typeparam>
     public interface IEntityRepository<TEntity, TId> : IRepository<TEntity, TId> 
-        where TEntity : class, IEntity<TId> {
+        where TEntity : class, IEntity<TId>
+        where TId : IComparable {
 
         IQueryable<TEntity> GetAllIncluding(params Expression<Func<TEntity, object>>[] includeProperties);
 

@@ -16,18 +16,6 @@ namespace GenericRepository.Test {
         }
 
         [Fact]
-        public void Throws_ArgumentException_If_pageSize_Param_Is_Bigger_Than_totalCount_Param() {
-
-            // Arrange
-            var source = Enumerable.Empty<object>();
-            var pageSize = 20;
-            var totalCount = 19;
-
-            // Act, Assert
-            Assert.Throws<ArgumentException>(() => new PaginatedList<object>(source, 1, pageSize, totalCount));
-        }
-
-        [Fact]
         public void Sets_The_PageIndex_Property_Corretly() {
 
             // Arrange

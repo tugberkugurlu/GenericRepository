@@ -34,11 +34,8 @@ namespace GenericRepository {
                 throw new ArgumentNullException("source");
             }
 
-            if (pageSize > totalCount) {
-                throw new ArgumentException(string.Format("{0} parameter cannot be bigger than {1} parameter.", "pageSize", "totalCount"), "pageSize");
-            }
-
-            // Check: Do we need to check if int parameters are lower than 0
+            // Check: Do we need to check if pageSize > totalCount.
+            // Check: Do we need to check if int parameters < 0.
 
             AddRange(source);
 

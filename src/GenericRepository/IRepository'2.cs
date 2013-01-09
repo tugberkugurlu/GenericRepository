@@ -12,7 +12,8 @@ namespace GenericRepository {
     /// <typeparam name="TEntity"></typeparam>
     /// <typeparam name="TId"></typeparam>
     public interface IRepository<TEntity, TId>
-        where TEntity : class, IEntity<TId> {
+        where TEntity : class, IEntity<TId>
+        where TId : IComparable {
 
         IQueryable<TEntity> GetAll();
         IQueryable<TEntity> FindBy(Expression<Func<TEntity, bool>> predicate);
