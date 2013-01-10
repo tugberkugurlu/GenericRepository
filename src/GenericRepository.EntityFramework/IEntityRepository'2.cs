@@ -14,6 +14,7 @@ namespace GenericRepository.EntityFramework {
         where TId : IComparable {
 
         IQueryable<TEntity> GetAllIncluding(params Expression<Func<TEntity, object>>[] includeProperties);
+        TEntity GetSingleIncluding(TId id, params Expression<Func<TEntity, object>>[] includeProperties);
 
         PaginatedList<TEntity> Paginate<TKey>(
             int pageIndex, int pageSize, Expression<Func<TEntity, TKey>> keySelector);

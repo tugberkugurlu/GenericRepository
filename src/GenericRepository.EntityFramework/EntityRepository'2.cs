@@ -89,6 +89,12 @@ namespace GenericRepository.EntityFramework {
             return entity;
         }
 
+        public TEntity GetSingleIncluding(TId id, params Expression<Func<TEntity, object>>[] includeProperties) {
+
+            TEntity entity = GetAllIncluding(includeProperties).FirstOrDefault(x => (object)x.Id == (object)id);
+            return entity;
+        }
+
         public void Add(TEntity entity) {
 
             _dbContext.SetAsAdded(entity);
