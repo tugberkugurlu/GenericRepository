@@ -148,7 +148,7 @@ namespace GenericRepository.EntityFramework {
             Expression right = Expression.Constant(value, typeof(TProperty));
 
             Expression searchExpression = Expression.Equal(left, right);
-            var lambda = Expression.Lambda<Func<TEntity, bool>>(Expression.Equal(left, right),
+            var lambda = Expression.Lambda<Func<TEntity, bool>>(searchExpression,
                                                                 new ParameterExpression[] { property.Parameters.Single() });
 
             return dbSet.Where(lambda);
