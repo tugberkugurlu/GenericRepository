@@ -1,10 +1,8 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Data;
 using System.Data.Entity;
-using System.Data.Entity.Infrastructure;
 using System.Linq;
 using System.Linq.Expressions;
+using System.Reflection;
 
 namespace GenericRepository.EntityFramework {
     
@@ -85,7 +83,8 @@ namespace GenericRepository.EntityFramework {
 
         public TEntity GetSingle(TId id) {
 
-            TEntity entity = GetAll().FirstOrDefault(x => (object)x.Id == (object)id);
+            IQueryable<TEntity> entities = GetAll();
+            TEntity entity = Filter<TId>(entities, x => x.Id, id).FirstOrDefault();
             return entity;
         }
 
@@ -133,6 +132,25 @@ namespace GenericRepository.EntityFramework {
             PaginatedList<TEntity> paginatedList = queryable.ToPaginatedList(pageIndex, pageSize);
 
             return paginatedList;
+        }
+
+        private IQueryable<TEntity> Filter<TProperty>(IQueryable<TEntity> dbSet, 
+            Expression<Func<TEntity, TProperty>> property, TProperty value)
+            where TProperty : IComparable {
+
+            var memberExpression = property.Body as MemberExpression;
+            if (memberExpression == null || !(memberExpression.Member is PropertyInfo)) {
+                throw new ArgumentException("Property expected", "property");
+            }
+
+            Expression left = property.Body;
+            Expression right = Expression.Constant(value, typeof(TProperty));
+
+            Expression searchExpression = Expression.Equal(left, right);
+            var lambda = Expression.Lambda<Func<TEntity, bool>>(Expression.Equal(left, right),
+                                                                new ParameterExpression[] { property.Parameters.Single() });
+
+            return dbSet.Where(lambda);
         }
 
         private enum OrderByType {
