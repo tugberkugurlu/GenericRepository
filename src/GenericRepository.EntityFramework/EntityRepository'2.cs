@@ -90,7 +90,8 @@ namespace GenericRepository.EntityFramework {
 
         public TEntity GetSingleIncluding(TId id, params Expression<Func<TEntity, object>>[] includeProperties) {
 
-            TEntity entity = GetAllIncluding(includeProperties).FirstOrDefault(x => (object)x.Id == (object)id);
+            IQueryable<TEntity> entities = GetAllIncluding(includeProperties);
+            TEntity entity = Filter<TId>(entities, x => x.Id, id).FirstOrDefault();
             return entity;
         }
 
