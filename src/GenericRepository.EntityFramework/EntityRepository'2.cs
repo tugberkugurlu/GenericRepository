@@ -141,15 +141,15 @@ namespace GenericRepository.EntityFramework {
 
             var memberExpression = property.Body as MemberExpression;
             if (memberExpression == null || !(memberExpression.Member is PropertyInfo)) {
+
                 throw new ArgumentException("Property expected", "property");
             }
 
             Expression left = property.Body;
             Expression right = Expression.Constant(value, typeof(TProperty));
-
             Expression searchExpression = Expression.Equal(left, right);
-            var lambda = Expression.Lambda<Func<TEntity, bool>>(searchExpression,
-                                                                new ParameterExpression[] { property.Parameters.Single() });
+            Expression<Func<TEntity, bool>> lambda = Expression.Lambda<Func<TEntity, bool>>(
+                searchExpression, new ParameterExpression[] { property.Parameters.Single() });
 
             return dbSet.Where(lambda);
         }
