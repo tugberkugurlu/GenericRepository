@@ -85,13 +85,13 @@ namespace GenericRepository.EntityFramework {
 
         public TEntity GetSingle(TId id) {
 
-            TEntity entity = GetAll().FirstOrDefault(x => (object)x.Id == (object)id);
+            TEntity entity = GetAll().FirstOrDefault(x => x.Id.Equals(id));
             return entity;
         }
 
         public TEntity GetSingleIncluding(TId id, params Expression<Func<TEntity, object>>[] includeProperties) {
 
-            TEntity entity = GetAllIncluding(includeProperties).FirstOrDefault(x => (object)x.Id == (object)id);
+            TEntity entity = GetAllIncluding(includeProperties).FirstOrDefault(x => x.Id.Equals(id));
             return entity;
         }
 

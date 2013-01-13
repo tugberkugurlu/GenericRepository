@@ -52,6 +52,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="EntityRepositoryIdStringTest.cs" />
     <Compile Include="EntityRepositoryTest.cs" />
     <Compile Include="Infrastrucure\Book.cs" />
     <Compile Include="Infrastrucure\FakeDbSet.cs" />

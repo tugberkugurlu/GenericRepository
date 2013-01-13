@@ -6,9 +6,9 @@ using System.Threading.Tasks;
 
 namespace GenericRepository.EntityFramework.Test.Infrastrucure {
     
-    public class Book : IEntity {
+    public class Book : IEntity<string> {
 
-        public int Id { get; set; }
+        public string Id { get; set; }
         public string Name { get; set; }
         public string AuthorName { get; set; }
         public DateTime PublishedOn { get; set; }
