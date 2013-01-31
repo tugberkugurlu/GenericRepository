@@ -2,10 +2,9 @@
 
 This little project contains a Generic Repository implementation for several data access platforms such as Entity Framework.
 
-You can find more information about the main idea of this pattern and the usage on ASP.NET MVC along with Unit Testing by visiting the below links:
+You can find more information about the usage of Entity Framework integration (a sample in ASP.NET Web API) by visiting the below link:
 
- - [Generic Repository Pattern - Entity Framework, ASP.NET MVC and Unit Testing Triangle][1]
- - [How to Work With Generic Repositories on ASP.NET MVC and Unit Testing Them By Mocking][2]
+ - [Clean, Better, and Sexier Generic Repository Implementation for Entity Framework][1]
 
 ## How to Install
 
@@ -21,7 +20,7 @@ Generic Repository insrastructure for .NET applications.
 
 **[GenericRepository.EntityFramework][8]**
 
-    PM> Install-Package GenericRepository.EF
+    PM> Install-Package GenericRepository.EntityFramework
 
 Generic Repository Entity Framework DbContext implementation.
 
@@ -35,11 +34,10 @@ Also, you can see the most up-to-date project under [develop][4] branch. Reposit
 
 You can also find all the releases under [Tags][5] section.
 
-  [1]: http://www.tugberkugurlu.com/archive/generic-repository-pattern-entity-framework-asp-net-mvc-and-unit-testing-triangle
-  [2]: http://www.tugberkugurlu.com/archive/how-to-work-with-generic-repositories-on-asp-net-mvc-and-unit-testing-them-by-mocking
+  [1]: http://www.tugberkugurlu.com/archive/clean-better-and-sexier-generic-repository-implementation-for-entity-framework
   [3]: https://github.com/tugberkugurlu/GenericRepository
   [4]: https://github.com/tugberkugurlu/GenericRepository/tree/develop
   [5]: https://github.com/tugberkugurlu/GenericRepository/tags
   [6]: http://nuget.org
   [7]: https://nuget.org/packages/GenericRepository
-  [8]: https://nuget.org/packages/GenericRepository.EF
+  [8]: https://nuget.org/packages/GenericRepository.EntityFramework
