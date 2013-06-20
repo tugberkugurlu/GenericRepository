@@ -1,6 +1,4 @@
-﻿using System.Data.Entity;
-
-namespace GenericRepository.EntityFramework {
+﻿namespace GenericRepository.EntityFramework {
     
     /// <summary>
     /// IEntityRepository implementation for DbContext instance where the TId type is Int32.
@@ -11,7 +9,6 @@ namespace GenericRepository.EntityFramework {
 
         public EntityRepository(IEntitiesContext dbContext)
             : base(dbContext) { 
-
         }
     }
 }

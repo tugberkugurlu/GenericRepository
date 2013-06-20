@@ -6,6 +6,9 @@ using System.Data.Objects;
 
 namespace GenericRepository.EntityFramework {
 
+    /// <summary>
+    /// Thin wrapper around the DbContext.
+    /// </summary>
     public abstract class EntitiesContext : DbContext, IEntitiesContext {
 
         /// <summary>
@@ -34,7 +37,7 @@ namespace GenericRepository.EntityFramework {
         /// remarks for how this is used to create a connection.
         /// </summary>
         /// <param name="nameOrConnectionString">Either the database name or a connection string.</param>
-        public EntitiesContext(string nameOrConnectionString) : base(nameOrConnectionString) { 
+        protected EntitiesContext(string nameOrConnectionString) : base(nameOrConnectionString) { 
         }
 
         /// <summary>
@@ -46,8 +49,8 @@ namespace GenericRepository.EntityFramework {
         /// If set to true the connection is disposed when the context is disposed, otherwise
         /// the caller must dispose the connection.
         /// </param>
-        public EntitiesContext(DbConnection existingConnection, bool contextOwnsConnection) : base(existingConnection, contextOwnsConnection) { 
-        }   
+        protected EntitiesContext(DbConnection existingConnection, bool contextOwnsConnection) : base(existingConnection, contextOwnsConnection) { 
+        }
 
         /// <summary>
         /// Constructs a new context instance around an existing ObjectContext.  An existing
@@ -60,7 +63,7 @@ namespace GenericRepository.EntityFramework {
         /// If set to true the ObjectContext is disposed when the EntitiesContext is disposed,
         /// otherwise the caller must dispose the connection.
         /// </param>
-        public EntitiesContext(ObjectContext objectContext, bool EntitiesContextOwnsObjectContext)
+        protected EntitiesContext(ObjectContext objectContext, bool EntitiesContextOwnsObjectContext)
             : base(objectContext, EntitiesContextOwnsObjectContext) { 
         }
 
@@ -72,7 +75,7 @@ namespace GenericRepository.EntityFramework {
         /// </summary>
         /// <param name="nameOrConnectionString">Either the database name or a connection string.</param>
         /// <param name="model">The model that will back this context.</param>
-        public EntitiesContext(string nameOrConnectionString, DbCompiledModel model) 
+        protected EntitiesContext(string nameOrConnectionString, DbCompiledModel model) 
             : base(nameOrConnectionString, model) { 
         }
 
@@ -90,26 +93,49 @@ namespace GenericRepository.EntityFramework {
         /// If set to true the connection is disposed when the context is disposed, otherwise
         /// the caller must dispose the connection.
         /// </param>
-        public EntitiesContext(DbConnection existingConnection, DbCompiledModel model, bool contextOwnsConnection) 
+        protected EntitiesContext(DbConnection existingConnection, DbCompiledModel model, bool contextOwnsConnection) 
             : base(existingConnection, model, contextOwnsConnection) { 
         }
 
+        /// <summary>
+        /// Returns a DbSet instance for access to entities of the given type in the context.
+        /// </summary>
+        /// <remarks>
+        /// This method calls the DbContext.Set method.
+        /// </remarks>
+        /// <typeparam name="TEntity">The type entity for which a set should be returned.</typeparam>
+        /// <returns>A set for the given entity type.</returns>
         public new IDbSet<TEntity> Set<TEntity>() where TEntity : class {
             return base.Set<TEntity>();
         }
 
+        /// <summary>
+        /// Sets the entity state as <see cref="EntityState.Added"/>.
+        /// </summary>
+        /// <typeparam name="TEntity">Type of the entity</typeparam>
+        /// <param name="entity">The entity whose state needs to be set as <see cref="EntityState.Added"/>.</param>
         public void SetAsAdded<TEntity>(TEntity entity) where TEntity : class {
 
             DbEntityEntry dbEntityEntry = GetDbEntityEntrySafely(entity);
             dbEntityEntry.State = EntityState.Added;
         }
 
+        /// <summary>
+        /// Sets the entity state as <see cref="EntityState.Modified"/>.
+        /// </summary>
+        /// <typeparam name="TEntity">Type of the entity</typeparam>
+        /// <param name="entity">The entity whose state needs to be set as <see cref="EntityState.Modified"/>.</param>
         public void SetAsModified<TEntity>(TEntity entity) where TEntity : class {
 
             DbEntityEntry dbEntityEntry = GetDbEntityEntrySafely(entity);
             dbEntityEntry.State = EntityState.Modified;
         }
 
+        /// <summary>
+        /// Sets the entity state as <see cref="EntityState.Deleted"/>.
+        /// </summary>
+        /// <typeparam name="TEntity">Type of the entity</typeparam>
+        /// <param name="entity">The entity whose state needs to be set as <see cref="EntityState.Deleted"/>.</param>
         public void SetAsDeleted<TEntity>(TEntity entity) where TEntity : class {
 
             DbEntityEntry dbEntityEntry = GetDbEntityEntrySafely(entity);
