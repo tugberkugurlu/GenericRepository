@@ -1,3 +1,5 @@
+> :warning: **THIS REPOSITORY IS NOT MAINTAINED ANYMORE. IF YOU WOULD LIKE TO VOLUNTEER TO BE THE MAINTAINER, PLEASE [CONTACT ME](https://twitter.com/tourismgeek)**
+
 This little project contains a Generic Repository implementation for several data access platforms such as Entity Framework.
 
 You can find more information about the main idea of this pattern and the usage on ASP.NET MVC along with Unit Testing by visiting the below links:
